@@ -2,17 +2,5 @@
   "bold": "Bold",
   "italic": "Italic",
   "underline": "Underline",
-  "strike": "Strike",
-  "codeBlock": "Code Block",
-  "clearFormatting": "Clear all formatting",
-  "orderedList": "Ordered List",
-  "bulletList": "Bullet List",
-  "blockQuote": "Block Quote",
-  "undo": "Undo",
-  "redo": "Redo",
-  "delete": "Delete",
-  "link": "Link",
-  "linkAddress": "Link address",
-  "insert": "Insert",
-  "cancel": "Cancel"
+  "strike": "Strike"
 }

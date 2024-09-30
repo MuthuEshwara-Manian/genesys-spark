@@ -1,8 +1,4 @@
 import { Component, h, JSX, Element, Prop } from '@stencil/core';
-import { Editor } from '@tiptap/core';
-import StarterKit from '@tiptap/starter-kit';
-import Underline from '@tiptap/extension-underline';
-import Link from '@tiptap/extension-link';
 
 /**
  * @slot typographical-emphasis - Slot for typographical actions
@@ -26,39 +22,6 @@ export class GuxRichTextEditor {
   @Prop()
   disabled: boolean = false;
 
-  private editor: Editor;
-
-  componentDidLoad(): void {
-    this.setupEditor();
-    if (this.editor) {
-      this.setupActions();
-    }
-  }
-
-  private setupActions(): void {
-    const actions = this.root?.querySelectorAll('gux-rich-text-editor-action');
-    actions.forEach(action => {
-      action.setEditor(this.editor);
-    });
-  }
-
-  private setupEditor(): void {
-    this.editor = new Editor({
-      element: this.root.shadowRoot.querySelector('.gux-rich-text-editor'),
-      extensions: [
-        StarterKit,
-        Underline,
-        Link.configure({
-          openOnClick: true,
-          autolink: true,
-          defaultProtocol: 'https'
-        })
-      ],
-      content: 'Start typing here...',
-      injectCSS: false,
-      editable: !this.disabled
-    });
-  }
   render(): JSX.Element {
     return (
       <div
@@ -87,7 +50,7 @@ export class GuxRichTextEditor {
             <slot name="global-actions"></slot>
           </div>
         </div>
-        <div class="gux-rich-text-editor"></div>
+        <slot name="editor"></slot>
         <slot name="content"></slot>
       </div>
     ) as JSX.Element;

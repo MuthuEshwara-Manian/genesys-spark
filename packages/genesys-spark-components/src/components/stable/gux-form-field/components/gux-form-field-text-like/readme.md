@@ -46,7 +46,6 @@ Type: `Promise<void>`
 ### Used by
 
  - [gux-pagination-buttons-legacy](../../../../legacy/gux-pagination-legacy/gux-pagination-buttons-legacy)
- - [gux-rich-text-editor-action-link](../../../../beta/gux-rich-text-editor/gux-rich-text-editor-action/gux-rich-text-editor-action-link)
 
 ### Depends on
 
@@ -64,7 +63,6 @@ graph TD;
   gux-form-field-text-like --> gux-icon
   gux-form-field-input-clear-button --> gux-icon
   gux-pagination-buttons-legacy --> gux-form-field-text-like
-  gux-rich-text-editor-action-link --> gux-form-field-text-like
   style gux-form-field-text-like fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

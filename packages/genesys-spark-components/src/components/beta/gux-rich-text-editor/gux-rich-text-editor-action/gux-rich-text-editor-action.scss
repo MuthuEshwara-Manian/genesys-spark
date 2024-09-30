@@ -3,13 +3,11 @@
 }
 
 gux-button-slot {
-  width: 32px;
-  height: 32px;
+  width: var(--gse-ui-button-icon-only-width);
+  height: var(--gse-ui-button-default-height);
 
-  button {
-    &.gux-is-active {
-      color: var(--gse-ui-button-ghost-active-foregroundColor);
-      background-color: var(--gse-ui-button-ghost-active-backgroundColor);
-    }
+  button.gux-is-active {
+    color: var(--gse-ui-button-ghost-active-foregroundColor);
+    background-color: var(--gse-ui-button-ghost-active-backgroundColor);
   }
 }

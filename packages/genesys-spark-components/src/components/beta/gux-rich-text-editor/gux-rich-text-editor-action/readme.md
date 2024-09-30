@@ -7,29 +7,11 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type                                                                                                                                                                 | Default     |
-| ---------- | ---------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `action`   | `action`   |             | `"blockquote" \| "bold" \| "bulletList" \| "clearFormatting" \| "codeBlock" \| "delete" \| "italic" \| "orderedList" \| "redo" \| "strike" \| "underline" \| "undo"` | `undefined` |
-| `disabled` | `disabled` |             | `boolean`                                                                                                                                                            | `false`     |
-
-
-## Methods
-
-### `setEditor(editor: Editor) => Promise<void>`
-
-
-
-#### Parameters
-
-| Name     | Type     | Description |
-| -------- | -------- | ----------- |
-| `editor` | `Editor` |             |
-
-#### Returns
-
-Type: `Promise<void>`
-
-
+| Property   | Attribute   | Description | Type                                            | Default     |
+| ---------- | ----------- | ----------- | ----------------------------------------------- | ----------- |
+| `action`   | `action`    |             | `"bold" \| "italic" \| "strike" \| "underline"` | `undefined` |
+| `disabled` | `disabled`  |             | `boolean`                                       | `false`     |
+| `isActive` | `is-active` |             | `boolean`                                       | `false`     |
 
 
 ## Dependencies
