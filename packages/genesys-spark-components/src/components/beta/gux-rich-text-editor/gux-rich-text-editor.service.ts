@@ -5,5 +5,6 @@ export function calculateDisabledState(root: HTMLElement): boolean {
     root,
     'gux-rich-text-editor-beta'
   ) as HTMLGuxRichTextEditorBetaElement;
-  return getParent?.disabled || this.disabled;
+
+  return !!(getParent?.disabled || root?.hasAttribute('disabled'));
 }

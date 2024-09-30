@@ -14,9 +14,9 @@
 
 ## Slots
 
-| Slot        | Description                                      |
-| ----------- | ------------------------------------------------ |
-| `"actions"` | Slot for a group of gux-rich-text-editor-actions |
+| Slot        | Description                           |
+| ----------- | ------------------------------------- |
+| `"actions"` | Slot for gux-rich-text-editor-actions |
 
 
 ----------------------------------------------

@@ -1,7 +1,7 @@
 import { Component, h, Prop, Element } from '@stencil/core';
 
 /**
- * @slot actions - Slot for a group of gux-rich-text-editor-actions
+ * @slot actions - Slot for gux-rich-text-editor-actions
  */
 
 @Component({
@@ -13,7 +13,7 @@ export class GuxRichTextEditorActionGroup {
   @Element()
   root: HTMLElement;
 
-  @Prop({ mutable: true })
+  @Prop()
   hideActionDivider: boolean = false;
 
   private shouldHideDivider(): boolean {
