@@ -61,14 +61,6 @@
     "./shared-configs/*",
     "./web-apps/*"
   ],
-  "dependencies": {
-    "@tiptap/core": "^2.6.6",
-    "@tiptap/extension-bold": "^2.7.0",
-    "@tiptap/extension-link": "^2.7.2",
-    "@tiptap/extension-underline": "^2.7.1",
-    "@tiptap/pm": "^2.6.6",
-    "@tiptap/starter-kit": "^2.6.6"
-  },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
