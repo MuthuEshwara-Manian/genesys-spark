@@ -2,4 +2,12 @@ export type GuxRichTextEditorActionTypes =
   | 'bold'
   | 'italic'
   | 'underline'
-  | 'strike';
+  | 'strike'
+  | 'codeblock'
+  | 'blockQuote'
+  | 'orderedList'
+  | 'bulletList'
+  | 'clearFormatting'
+  | 'undo'
+  | 'redo'
+  | 'delete';

@@ -5,6 +5,7 @@ import { buildI18nForComponent, GetI18nValue } from 'i18n';
 import translationResources from './i18n/en.json';
 import { GuxRichTextEditorActionTypes } from './gux-rich-text-editor-action.types';
 import { calculateDisabledState } from '../gux-rich-text-editor.service';
+import { returnActionTypeIcon } from '../gux-rich-text-editor.service';
 
 @Component({
   tag: 'gux-rich-text-editor-action',
@@ -42,21 +43,6 @@ export class GuxRichTextEditorAction {
     }
   }
 
-  private returnActionTypeIcon(action: GuxRichTextEditorActionTypes): string {
-    switch (action) {
-      case 'bold':
-        return 'fa/bold-regular';
-      case 'italic':
-        return 'fa/italic-regular';
-      case 'underline':
-        return 'fa/underline-regular';
-      case 'strike':
-        return 'fa/strikethrough-regular';
-      default:
-        return 'fa/bold-regular';
-    }
-  }
-
   private renderActionButton(): JSX.Element {
     return (
       <gux-button-slot accent="ghost" icon-only>
@@ -66,7 +52,7 @@ export class GuxRichTextEditorAction {
           class={{ 'gux-is-active': this.isActive }}
         >
           <gux-icon
-            icon-name={this.returnActionTypeIcon(this.action)}
+            icon-name={returnActionTypeIcon(this.action)}
             decorative
           ></gux-icon>
         </button>

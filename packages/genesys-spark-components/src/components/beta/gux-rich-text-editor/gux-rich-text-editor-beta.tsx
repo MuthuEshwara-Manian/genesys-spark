@@ -5,7 +5,6 @@ import { Component, h, JSX, Element, Prop } from '@stencil/core';
  * @slot text-styling - Slot for text-styling actions
  * @slot lists-indentation - Slot for lists and indentation actions
  * @slot inserting - Slot for inserting actions
- * @slot table-actions - Slot for table actions
  * @slot global-actions - Slot for global actions
  * @slot content - Optional slot for content
  */
@@ -42,9 +41,6 @@ export class GuxRichTextEditor {
           </div>
           <div class="gux-inserting-container">
             <slot name="inserting"></slot>
-          </div>
-          <div class="gux-table-actions-container">
-            <slot name="table-actions"></slot>
           </div>
           <div class="gux-global-actions-container">
             <slot name="global-actions"></slot>
