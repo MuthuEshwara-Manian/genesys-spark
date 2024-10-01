@@ -25,6 +25,7 @@
     <gux-rich-text-editor-action
       action="codeblock"
     ></gux-rich-text-editor-action>
+    <gux-rich-text-editor-action-link></gux-rich-text-editor-action-link>
     <gux-rich-text-editor-action
       action="blockQuote"
     ></gux-rich-text-editor-action>
@@ -57,11 +58,17 @@
   const { Editor } = await import('https://esm.sh/@tiptap/core@2.7.4');
   const StarterKit = (await import('https://esm.sh/@tiptap/starter-kit@2.7.4')).default;
   const Underline = (await import('https://cdn.jsdelivr.net/npm/@tiptap/extension-underline@2.7.4/+esm')).default;
+  const Link = (await import('https://cdn.jsdelivr.net/npm/@tiptap/extension-link@2.7.4/+esm')).default;
     
 // Initialize the editor
 const editor = new Editor({
   element: document.querySelector('.editorElement'),
-  extensions: [StarterKit, Underline],
+  extensions: [StarterKit, Underline,
+        Link.configure({
+        openOnClick: true,
+        autolink: true,
+        defaultProtocol: 'https',
+      })],
   content: 'Start typing here...',
   injectCSS: false,
 });
@@ -105,6 +112,32 @@ function updateActionState() {
 // Add a single event listener for updating action states
 editor.on('transaction', updateActionState);
 editor.on('selectionUpdate', updateActionState);
+
+//Link action functionality
+const linkAction = document.querySelector('gux-rich-text-editor-action-link');
+
+let textToDisplay = '';
+
+linkAction.addEventListener('linkAddress', (event) => {
+  editor
+  .chain()
+  .focus()
+  .extendMarkRange('link')
+  .setLink({ href: event.detail })
+  .command(({ tr }) => {
+     tr.insertText(textToDisplay)
+     return true
+  })
+  .run();
+
+  textToDisplay = '';
+})
+
+linkAction.addEventListener('textToDisplay', (event) => {
+  textToDisplay = event.detail;
+});
+
+
 
 
 

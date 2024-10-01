@@ -10,5 +10,10 @@
   "clearFormatting": "Clear Formatting",
   "undo": "Undo",
   "redo": "Redo",
-  "delete": "Delete"
+  "delete": "Delete",
+  "link": "Link",
+  "insert": "Insert",
+  "cancel": "Cancel",
+  "linkAddress": "Link Address",
+  "textToDisplay": "Text to display"
 }
