@@ -73,12 +73,15 @@ export class GuxRichTextEditorActionLink {
   private emitEvents(): void {
     this.textToDisplay.emit(this.textToDisplayInputElement.value);
     this.linkAddress.emit(this.linkAddressInputElement.value);
+    this.isOpen = false;
   }
 
   private togglePopover(): void {
     this.isOpen = !this.isOpen;
     if (this.isOpen) {
       this.focusTextToDisplayInputElement();
+    } else {
+      this.actionButton.focus();
     }
   }
 
@@ -86,10 +89,6 @@ export class GuxRichTextEditorActionLink {
     afterNextRender(() => {
       this.textToDisplayInputElement.focus();
     });
-  }
-
-  private closePopover(): void {
-    this.isOpen = false;
   }
 
   private renderTooltip(): JSX.Element {
@@ -108,6 +107,7 @@ export class GuxRichTextEditorActionLink {
         <gux-button-slot accent="ghost" icon-only>
           <button
             id="popover-target"
+            class={{ 'gux-is-active': this.isOpen }}
             onClick={() => this.togglePopover()}
             ref={el => (this.actionButton = el)}
             type="button"
@@ -117,8 +117,8 @@ export class GuxRichTextEditorActionLink {
           >
             <gux-icon icon-name="fa/link-simple-regular" decorative></gux-icon>
           </button>
+          {this.renderTooltip()}
         </gux-button-slot>
-        {this.renderTooltip()}
         <gux-popover is-open={this.isOpen} for="popover-target">
           <div class="gux-popover-content-wrapper">
             <gux-form-field-text-like>
@@ -141,7 +141,7 @@ export class GuxRichTextEditorActionLink {
               <gux-button onClick={() => this.emitEvents()} slot="primary">
                 {this.i18n('insert')}
               </gux-button>
-              <gux-button onClick={() => this.closePopover()} slot="dismiss">
+              <gux-button onClick={() => this.togglePopover()} slot="dismiss">
                 {this.i18n('cancel')}
               </gux-button>
             </gux-cta-group>

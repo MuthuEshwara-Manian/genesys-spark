@@ -1,8 +1,22 @@
+:host {
+  display: block;
+}
+
 gux-popover {
   div.gux-popover-content-wrapper {
     display: flex;
     flex-direction: column;
     gap: 16px;
     padding: var(--gse-ui-popover-padding);
+  }
+}
+
+gux-button-slot {
+  width: var(--gse-ui-button-iconOnly-width);
+  height: var(--gse-ui-button-default-height);
+
+  button.gux-is-active {
+    color: var(--gse-ui-button-ghost-active-foregroundColor);
+    background-color: var(--gse-ui-button-ghost-active-backgroundColor);
   }
 }
