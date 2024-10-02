@@ -25,7 +25,6 @@ export class GuxRichTextEditorActionLink {
   private i18n: GetI18nValue;
   actionButton: HTMLElement;
   linkAddressInputElement: HTMLInputElement;
-  textToDisplayInputElement: HTMLInputElement;
 
   @Element()
   private root: HTMLElement;
@@ -37,8 +36,6 @@ export class GuxRichTextEditorActionLink {
   isOpen: boolean = false;
 
   @Event() linkAddress: EventEmitter<string>;
-
-  @Event() textToDisplay: EventEmitter<string>;
 
   @OnClickOutside({ triggerEvents: 'mousedown' })
   onClickOutside(): void {
@@ -58,7 +55,7 @@ export class GuxRichTextEditorActionLink {
         if (composedPath.includes(this.actionButton)) {
           event.preventDefault();
           this.isOpen = true;
-          this.focusTextToDisplayInputElement();
+          this.focusLinkAddressInputElement();
         }
         break;
     }
@@ -70,8 +67,7 @@ export class GuxRichTextEditorActionLink {
     this.disabled = calculateDisabledState(this.root);
   }
 
-  private emitEvents(): void {
-    this.textToDisplay.emit(this.textToDisplayInputElement.value);
+  private emitLinkAddress(): void {
     this.linkAddress.emit(this.linkAddressInputElement.value);
     this.isOpen = false;
   }
@@ -79,15 +75,15 @@ export class GuxRichTextEditorActionLink {
   private togglePopover(): void {
     this.isOpen = !this.isOpen;
     if (this.isOpen) {
-      this.focusTextToDisplayInputElement();
+      this.focusLinkAddressInputElement();
     } else {
       this.actionButton.focus();
     }
   }
 
-  private focusTextToDisplayInputElement(): void {
+  private focusLinkAddressInputElement(): void {
     afterNextRender(() => {
-      this.textToDisplayInputElement.focus();
+      this.linkAddressInputElement.focus();
     });
   }
 
@@ -123,14 +119,6 @@ export class GuxRichTextEditorActionLink {
           <div class="gux-popover-content-wrapper">
             <gux-form-field-text-like>
               <input
-                ref={el => (this.textToDisplayInputElement = el)}
-                slot="input"
-                type="text"
-              />
-              <label slot="label">{this.i18n('textToDisplay')}</label>
-            </gux-form-field-text-like>
-            <gux-form-field-text-like>
-              <input
                 ref={el => (this.linkAddressInputElement = el)}
                 slot="input"
                 type="text"
@@ -138,7 +126,7 @@ export class GuxRichTextEditorActionLink {
               <label slot="label">{this.i18n('linkAddress')}</label>
             </gux-form-field-text-like>
             <gux-cta-group align="end">
-              <gux-button onClick={() => this.emitEvents()} slot="primary">
+              <gux-button onClick={() => this.emitLinkAddress()} slot="primary">
                 {this.i18n('insert')}
               </gux-button>
               <gux-button onClick={() => this.togglePopover()} slot="dismiss">

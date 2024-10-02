@@ -86,7 +86,7 @@ const actionsConfig = [
   { action: 'clearFormatting', command: 'unsetAllMarks', selector: 'gux-rich-text-editor-action[action=clearFormatting]' },
   { action: 'undo', command: 'undo', selector: 'gux-rich-text-editor-action[action=undo]' },
   { action: 'redo', command: 'redo', selector: 'gux-rich-text-editor-action[action=redo]' },
-  { action: 'delete', command: 'delete', selector: 'gux-rich-text-editor-action[action=delete]' }
+  { action: 'delete', command: 'delete', selector: 'gux-rich-text-editor-action[action=delete]' },
 ];
 
 // Add event listeners and store action elements
@@ -95,6 +95,7 @@ const actions = actionsConfig.map(({ action, command, selector }) => {
 
   // Add click event listener for toggling editor command
   element.addEventListener('click', () => {
+    
    command == 'delete' ? editor.commands.deleteNode('paragraph') : editor.chain().focus()[command]().run();
   });
 
@@ -115,31 +116,11 @@ editor.on('selectionUpdate', updateActionState);
 
 //Link action functionality
 const linkAction = document.querySelector('gux-rich-text-editor-action-link');
-
-let textToDisplay = '';
-
+//Link event listener
 linkAction.addEventListener('linkAddress', (event) => {
-  editor
-  .chain()
-  .focus()
-  .extendMarkRange('link')
-  .setLink({ href: event.detail })
-  .command(({ tr }) => {
-     tr.insertText(textToDisplay)
-     return true
-  })
-  .run();
-
-  textToDisplay = '';
-})
-
-linkAction.addEventListener('textToDisplay', (event) => {
-  textToDisplay = event.detail;
+  editor.chain().focus().extendMarkRange('link').setLink({ href: event.detail })
+  .run()
 });
-
-
-
-
 
 })();
 
