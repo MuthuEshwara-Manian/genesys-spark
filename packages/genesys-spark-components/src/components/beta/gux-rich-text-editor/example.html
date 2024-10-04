@@ -9,6 +9,22 @@
     <gux-rich-text-editor-action action="strike"></gux-rich-text-editor-action>
   </gux-rich-text-editor-action-group>
   <gux-rich-text-editor-action-group slot="text-styling">
+    <gux-rich-text-editor-action-rich-style>
+      <gux-listbox>
+        <gux-rich-style-option typography-setting="1"
+          >Heading 1</gux-rich-style-option
+        >
+        <gux-rich-style-option typography-setting="2"
+          >Heading 2</gux-rich-style-option
+        >
+        <gux-rich-style-option typography-setting="3"
+          >Heading 3</gux-rich-style-option
+        >
+        <gux-rich-style-option typography-setting="paragraph"
+          >Paragraph</gux-rich-style-option
+        >
+      </gux-listbox>
+    </gux-rich-text-editor-action-rich-style>
     <gux-rich-text-editor-action
       action="clearFormatting"
     ></gux-rich-text-editor-action>
@@ -55,25 +71,45 @@
 <style
   onload="(function () {
   (async () => {
-  const { Editor } = await import('https://esm.sh/@tiptap/core@2.7.4');
-  const StarterKit = (await import('https://esm.sh/@tiptap/starter-kit@2.7.4')).default;
-  const Underline = (await import('https://cdn.jsdelivr.net/npm/@tiptap/extension-underline@2.7.4/+esm')).default;
-  const Link = (await import('https://cdn.jsdelivr.net/npm/@tiptap/extension-link@2.7.4/+esm')).default;
-    
-// Initialize the editor
+    // Import required editor and extension modules
+// - Editor: Main class to create and manipulate the text editor.
+// - StarterKit: Provides basic functionality like bold, italic, lists, etc.
+// - Underline: Adds underline support to the editor.
+// - Link: Adds link support, allowing for hyperlinks within the editor.
+// - Heading: Adds heading levels (H1, H2, H3) to the editor.
+const { Editor } = await import('https://esm.sh/@tiptap/core@2.7.4');
+const StarterKit = (await import('https://esm.sh/@tiptap/starter-kit@2.7.4')).default;
+const Underline = (await import('https://cdn.jsdelivr.net/npm/@tiptap/extension-underline@2.7.4/+esm')).default;
+const Link = (await import('https://cdn.jsdelivr.net/npm/@tiptap/extension-link@2.7.4/+esm')).default;
+const Heading = (await import('https://cdn.jsdelivr.net/npm/@tiptap/extension-heading@2.7.4/+esm')).default;
+
+// Initialize the editor with specific configuration
+// - element: Specifies the DOM element where the editor will be rendered.
+// - extensions: Sets up the extensions used by the editor (e.g., StarterKit, Underline, Link, Heading).
+// - content: Preloads the editor with initial content.
+// - injectCSS: Disables automatic CSS injection for more control over styling.
 const editor = new Editor({
   element: document.querySelector('.editorElement'),
-  extensions: [StarterKit, Underline,
-        Link.configure({
-        openOnClick: true,
-        autolink: true,
-        defaultProtocol: 'https',
-      })],
+  extensions: [
+    StarterKit, 
+    Underline,
+    Link.configure({
+      openOnClick: true,      // Automatically opens links when clicked.
+      autolink: true,         // Automatically creates links when typing URLs.
+      defaultProtocol: 'https', // Default protocol for links if not specified.
+    }),
+    Heading.configure({
+      levels: [1, 2, 3],      // Allows heading levels 1, 2, and 3.
+    }),
+  ],
   content: 'Start typing here...',
   injectCSS: false,
 });
 
-// Map the action types to DOM elements and editor commands
+// Configuration mapping for editor actions
+// - action: The type of action to be performed (e.g., bold, italic, underline).
+// - command: The editor command associated with the action.
+// - selector: The DOM selector that triggers the action.
 const actionsConfig = [
   { action: 'bold', command: 'toggleBold', selector: 'gux-rich-text-editor-action[action=bold]' },
   { action: 'italic', command: 'toggleItalic', selector: 'gux-rich-text-editor-action[action=italic]' },
@@ -89,38 +125,64 @@ const actionsConfig = [
   { action: 'delete', command: 'delete', selector: 'gux-rich-text-editor-action[action=delete]' },
 ];
 
-// Add event listeners and store action elements
+// Map actions to DOM elements and attach click event listeners
+// Each action is associated with a button or UI element that executes a command in the editor when clicked.
+// If the action is 'delete', it will remove a paragraph node, otherwise, it will toggle the specified formatting.
 const actions = actionsConfig.map(({ action, command, selector }) => {
   const element = document.querySelector(selector);
 
   // Add click event listener for toggling editor command
   element.addEventListener('click', () => {
-    
-   command == 'delete' ? editor.commands.deleteNode('paragraph') : editor.chain().focus()[command]().run();
+    command === 'delete' 
+      ? editor.commands.deleteNode('paragraph') // Delete paragraph if the action is 'delete'
+      : editor.chain().focus()[command]().run(); // Run the editor command for other actions
   });
 
   return { element, action };
 });
 
-// Function to update the active state of each action
+// Function to update the active state of editor actions
+// This ensures that buttons or UI elements reflect the current formatting state of the selected text.
 function updateActionState() {
   actions.forEach(({ element, action }) => {
-    const isActive = editor.isActive(action);
-    element.isActive = isActive;
+    const isActive = editor.isActive(action);  // Check if the current action is active
+    element.isActive = isActive;               // Set the isActive state on the element
   });
 }
 
-// Add a single event listener for updating action states
+// Attach event listeners to the editor
+// These listeners update the action state when the editor's content or selection changes.
 editor.on('transaction', updateActionState);
 editor.on('selectionUpdate', updateActionState);
 
-//Link action functionality
+// Event listener for the Link action
+// Adds or updates a hyperlink when a user specifies a URL.
 const linkAction = document.querySelector('gux-rich-text-editor-action-link');
-//Link event listener
 linkAction.addEventListener('linkAddress', (event) => {
-  editor.chain().focus().extendMarkRange('link').setLink({ href: event.detail })
-  .run()
+  editor.chain().focus().extendMarkRange('link').setLink({ href: event.detail }).run();
 });
+
+// Apply heading styles (H1, H2, H3, paragraph) by listening for clicks on specific typography settings
+const heading1 = document.querySelector(`gux-rich-style-option[typography-setting='1']`);
+heading1.addEventListener('click', () => {
+  editor.chain().focus().toggleHeading({ level: 1 }).run();
+});
+
+const heading2 = document.querySelector(`gux-rich-style-option[typography-setting='2']`);
+heading2.addEventListener('click', () => {
+  editor.chain().focus().toggleHeading({ level: 2 }).run();
+});
+
+const heading3 = document.querySelector(`gux-rich-style-option[typography-setting='3']`);
+heading3.addEventListener('click', () => {
+  editor.chain().focus().toggleHeading({ level: 3 }).run();
+});
+
+const paragraph = document.querySelector(`gux-rich-style-option[typography-setting='paragraph']`);
+paragraph.addEventListener('click', () => {
+  editor.commands.setParagraph();
+})
+
 
 })();
 

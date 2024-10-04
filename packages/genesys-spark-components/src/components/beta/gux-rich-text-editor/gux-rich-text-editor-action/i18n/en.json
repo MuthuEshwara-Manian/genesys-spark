@@ -15,5 +15,6 @@
   "insert": "Insert",
   "cancel": "Cancel",
   "linkAddress": "Link Address",
-  "textToDisplay": "Text to display"
+  "paragraph": "Paragraph",
+  "richStyle": "Rich Style"
 }

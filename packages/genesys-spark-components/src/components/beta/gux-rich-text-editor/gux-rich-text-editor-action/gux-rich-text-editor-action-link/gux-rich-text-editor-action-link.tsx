@@ -7,7 +7,8 @@ import {
   EventEmitter,
   Listen,
   h,
-  Host
+  Host,
+  Watch
 } from '@stencil/core';
 import { GetI18nValue, buildI18nForComponent } from 'i18n';
 import translationResources from '../i18n/en.json';
@@ -36,6 +37,13 @@ export class GuxRichTextEditorActionLink {
   isOpen: boolean = false;
 
   @Event() linkAddress: EventEmitter<string>;
+
+  @Watch('disabled')
+  watchDisabled(disabled: boolean) {
+    if (disabled) {
+      this.isOpen = false;
+    }
+  }
 
   @OnClickOutside({ triggerEvents: 'mousedown' })
   onClickOutside(): void {

@@ -14,10 +14,9 @@
 
 ## Events
 
-| Event           | Description | Type                  |
-| --------------- | ----------- | --------------------- |
-| `linkAddress`   |             | `CustomEvent<string>` |
-| `textToDisplay` |             | `CustomEvent<string>` |
+| Event         | Description | Type                  |
+| ------------- | ----------- | --------------------- |
+| `linkAddress` |             | `CustomEvent<string>` |
 
 
 ## Dependencies

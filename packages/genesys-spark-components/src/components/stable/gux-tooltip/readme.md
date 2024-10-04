@@ -70,6 +70,7 @@ Type: `Promise<void>`
  - [gux-pagination-ellipsis-button](../gux-pagination/gux-pagination-buttons/gux-pagination-ellipsis-button)
  - [gux-rich-text-editor-action](../../beta/gux-rich-text-editor/gux-rich-text-editor-action)
  - [gux-rich-text-editor-action-link](../../beta/gux-rich-text-editor/gux-rich-text-editor-action/gux-rich-text-editor-action-link)
+ - [gux-rich-text-editor-action-rich-style](../../beta/gux-rich-text-editor/gux-rich-text-editor-action/gux-rich-text-editor-action-rich-style)
  - [gux-segmented-control-item](../../beta/gux-segmented-control/gux-segmented-control-item)
  - [gux-table-toolbar-custom-action](../gux-table-toolbar/gux-table-toolbar-custom-action)
  - [gux-tooltip-title](../gux-tooltip-title)
@@ -82,6 +83,7 @@ graph TD;
   gux-pagination-ellipsis-button --> gux-tooltip
   gux-rich-text-editor-action --> gux-tooltip
   gux-rich-text-editor-action-link --> gux-tooltip
+  gux-rich-text-editor-action-rich-style --> gux-tooltip
   gux-segmented-control-item --> gux-tooltip
   gux-table-toolbar-custom-action --> gux-tooltip
   gux-tooltip-title --> gux-tooltip
