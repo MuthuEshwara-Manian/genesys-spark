@@ -1,0 +1,19 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: flex;
+  flex: 0 0 auto;
+  gap: var(--gse-ui-dynamicSideSheet-header-interiorGap);
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: var(--gse-ui-dynamicSideSheet-heading-fontFamily);
+  font-size: var(--gse-ui-dynamicSideSheet-heading-fontSize);
+  font-weight: var(--gse-ui-dynamicSideSheet-heading-fontWeight);
+  line-height: 1;
+  color: var(--gse-ui-dynamicSideSheet-headerColor);
+}
