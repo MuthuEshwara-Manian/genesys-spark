@@ -1,23 +1,23 @@
 import { Component, Element, h, Prop } from '@stencil/core';
 import { trackComponent } from '@utils/tracking/usage';
 import {
-  GuxSideSheetHeadingLevel,
-  GuxSideHeadingTag
-} from '../../gux-side-sheet.types';
+  GuxSidePanelHeadingLevel,
+  GuxSidePanelHeadingTag
+} from '../../gux-side-panel.types';
 
 @Component({
-  tag: 'gux-side-sheet-heading',
-  styleUrl: 'gux-side-sheet-heading.scss',
+  tag: 'gux-side-panel-heading',
+  styleUrl: 'gux-side-panel-heading.scss',
   shadow: true
 })
-export class GuxSideSheetHeading {
+export class GuxSidePanelHeading {
   @Element()
   private root: HTMLElement;
   /**
    * Heading level, 1-6.
    */
   @Prop()
-  level: GuxSideSheetHeadingLevel = 1;
+  level: GuxSidePanelHeadingLevel = 1;
 
   @Prop()
   text: string;
@@ -25,11 +25,11 @@ export class GuxSideSheetHeading {
   @Prop()
   icon: string;
 
-  private HeadingTag: GuxSideHeadingTag;
+  private HeadingTag: GuxSidePanelHeadingTag;
 
   componentWillLoad(): void {
     trackComponent(this.root);
-    this.HeadingTag = `h${this.level}` as GuxSideHeadingTag;
+    this.HeadingTag = `h${this.level}` as GuxSidePanelHeadingTag;
   }
 
   render(): JSX.Element {
