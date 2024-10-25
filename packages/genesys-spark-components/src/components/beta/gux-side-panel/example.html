@@ -1,39 +1,37 @@
-<div id="side-sheet-wrapper">
+<div id="side-panel-wrapper">
   <div id="content">
-    <h1>Side Sheet</h1>
+    <h1>Side Panel</h1>
 
     <p>
-      You can listen to the 'sideSheetDismiss' event on the
-      `gux-side-sheet-beta` element to know when the side sheet is to be
+      You can listen to the 'sidePanelDismiss' event on the
+      `gux-side-panel-beta` element to know when the side panel is to be
       hidden/removed.
     </p>
 
-    <gux-cta-group
-      ><gux-button slot="secondary" id="toggle-small">Toggle small</gux-button
-      ><gux-button slot="secondary" id="toggle-medium"
-        >Toggle medium</gux-button
-      ></gux-cta-group
-    >
+    <gux-cta-group>
+      <gux-button slot="secondary" id="toggle-small">Toggle small</gux-button>
+      <gux-button slot="secondary" id="toggle-medium">Toggle medium</gux-button>
+    </gux-cta-group>
 
-    <h2>Modal Side Sheet</h2>
+    <h2>Modal Side Panel</h2>
 
-    <p>You can show/hide the `gux-modal-side-sheet` via two mechanisms:</p>
+    <p>You can show/hide the `gux-modal-side-panel` via two mechanisms:</p>
     <ol>
       <li>
-        Use the `showModal()` and `close()` methods on a `gux-modal-side-sheet`
+        Use the `showModal()` and `close()` methods on a `gux-modal-side-panel`
         element
       </li>
-      <li>Set the `open` property or attribute on `gux-modal-side-sheet`</li>
+      <li>Set the `open` property or attribute on `gux-modal-side-panel`</li>
     </ol>
 
-    <gux-modal-side-sheet-beta id="modal-example">
-      <gux-side-sheet-heading
+    <gux-modal-side-panel-beta id="modal-example">
+      <gux-side-panel-heading
         slot="heading"
         level="3"
         icon="fa/diamond-regular"
       >
-        Side sheet title
-      </gux-side-sheet-heading>
+        Side panel title
+      </gux-side-panel-heading>
       <h2 slot="description">Pellentesque habitant morbi tristique sen</h2>
       <div slot="content">
         Pellentesque habitant morbi tristique senectus et netus et malesuada
@@ -53,7 +51,7 @@
           >
         </gux-cta-group>
       </div>
-    </gux-modal-side-sheet-beta>
+    </gux-modal-side-panel-beta>
 
     <gux-cta-group>
       <gux-button slot="secondary" id="modal-small">Show small</gux-button>
@@ -62,10 +60,10 @@
     </gux-cta-group>
   </div>
 
-  <gux-side-sheet-beta size="medium" id="dynamic-example">
-    <gux-side-sheet-heading slot="heading" level="3" icon="fa/diamond-regular">
-      Side sheet title
-    </gux-side-sheet-heading>
+  <gux-side-panel-beta size="medium" id="dynamic-example">
+    <gux-side-panel-heading slot="heading" level="3" icon="fa/diamond-regular">
+      Side panel title
+    </gux-side-panel-heading>
     <h2 slot="description">Pellentesque habitant morbi tristique sen</h2>
     <div slot="content">
       Pellentesque habitant morbi tristique senectus et netus et malesuada fames
@@ -86,48 +84,50 @@
         >
       </gux-cta-group>
     </div>
-  </gux-side-sheet-beta>
+  </gux-side-panel-beta>
 </div>
 
 <style
   onload="(function () {
-  const modalSideSheet = document.getElementById('modal-example');
-  const dynamicSideSheet = document.getElementById('dynamic-example');
+  const modalSidePanel = document.getElementById('modal-example');
+  const dynamicSidePanel = document.getElementById('dynamic-example');
   
   document.getElementById('modal-small').addEventListener('click', function () {
-    modalSideSheet.setAttribute('size', 'small');
-    modalSideSheet.showModal();
+    modalSidePanel.setAttribute('size', 'small');
+    modalSidePanel.showModal();
   });
 
   document.getElementById('modal-medium').addEventListener('click', function () {
-    modalSideSheet.setAttribute('size', 'medium');
-    modalSideSheet.showModal();
+    modalSidePanel.setAttribute('size', 'medium');
+    modalSidePanel.showModal();
   });
 
   document.getElementById('modal-large').addEventListener('click', function () {
-    modalSideSheet.setAttribute('size', 'large');
-    modalSideSheet.showModal();
+    modalSidePanel.setAttribute('size', 'large');
+    modalSidePanel.showModal();
   });
 
   document.getElementById('toggle-small').addEventListener('click', function () {
-    dynamicSideSheet.size = 'small';
-    dynamicSideSheet.style.display = 'block';
+    dynamicSidePanel.size = 'small';
+    dynamicSidePanel.style.display = 'block';
   });
 
   document.getElementById('toggle-medium').addEventListener('click', function () {
-    dynamicSideSheet.size = 'medium';
-    dynamicSideSheet.style.display = 'block';
+    dynamicSidePanel.size = 'medium';
+    dynamicSidePanel.style.display = 'block';
   });
 
-  dynamicSideSheet.addEventListener('sideSheetDismiss', event => {    dynamicSideSheet.style.display = dynamicSideSheet.style.display === 'none' ? 'block' : 'none'});
-  modalSideSheet.addEventListener('modalSideSheetDismiss', event => notify(event));
+  dynamicSidePanel.addEventListener('sidePanelDismiss', event => {
+    dynamicSidePanel.style.display = dynamicSidePanel.style.display === 'none' ? 'block' : 'none';
+  });
+  modalSidePanel.addEventListener('modalSidePanelDismiss', event => notify(event));
 })()"
 >
   .preview {
     padding: 0 !important;
   }
 
-  #side-sheet-wrapper {
+  #side-panel-wrapper {
     display: flex;
     height: 100%;
   }
@@ -137,7 +137,7 @@
     padding: 27px 30px;
   }
 
-  gux-side-sheet-beta {
+  gux-side-panel-beta {
     flex: 0 1 auto;
   }
 </style>

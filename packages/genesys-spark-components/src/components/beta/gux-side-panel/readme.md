@@ -1,9 +1,6 @@
 # gux-side-sheet-beta
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -11,25 +8,24 @@
 | -------- | --------- | ----------- | -------------------------------- | --------- |
 | `size`   | `size`    |             | `"large" \| "medium" \| "small"` | `'small'` |
 
-
 ## Events
 
 | Event              | Description | Type                |
 | ------------------ | ----------- | ------------------- |
 | `sideSheetDismiss` |             | `CustomEvent<void>` |
 
-
 ## Dependencies
 
 ### Used by
 
- - [gux-modal-side-sheet-beta](.)
+- [gux-modal-side-sheet-beta](.)
 
 ### Depends on
 
 - [gux-dismiss-button](../../stable/gux-dismiss-button)
 
 ### Graph
+
 ```mermaid
 graph TD;
   gux-side-sheet-beta --> gux-dismiss-button
@@ -39,6 +35,6 @@ graph TD;
   style gux-side-sheet-beta fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

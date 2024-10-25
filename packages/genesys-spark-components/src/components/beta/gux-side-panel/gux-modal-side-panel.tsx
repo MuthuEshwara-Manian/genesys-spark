@@ -9,17 +9,17 @@ import {
   Prop,
   Watch
 } from '@stencil/core';
-import { GuxSideSheetSize } from './gux-side-sheet.types';
+import { GuxSidePanelSize } from './gux-side-panel.types';
 import { randomHTMLId } from '@utils/dom/random-html-id';
 import { hasSlot } from '@utils/dom/has-slot';
 import { trackComponent } from '@utils/tracking/usage';
 
 @Component({
-  tag: 'gux-modal-side-sheet-beta',
-  styleUrl: './gux-modal-side-sheet.scss',
+  tag: 'gux-modal-side-panel-beta',
+  styleUrl: './gux-modal-side-panel.scss',
   shadow: true
 })
-export class GuxModalSideSheet {
+export class GuxModalSidePanel {
   @Element()
   private root: HTMLElement;
 
@@ -27,7 +27,7 @@ export class GuxModalSideSheet {
   open: boolean = false;
 
   @Prop()
-  size: GuxSideSheetSize = 'medium';
+  size: GuxSidePanelSize = 'medium';
 
   private dialogElement: HTMLDialogElement;
   @Watch('open')
@@ -36,15 +36,15 @@ export class GuxModalSideSheet {
       this.dialogElement.showModal();
     } else {
       this.dialogElement.close();
-      this.modalSideSheetDismiss.emit();
+      this.modalSidePanelDismiss.emit();
     }
   }
 
   @Event()
-  modalSideSheetDismiss: EventEmitter<void>;
+  modalSidePanelDismiss: EventEmitter<void>;
 
-  @Listen('sideSheetDismiss')
-  sidesheetdismissHandler(): void {
+  @Listen('sidePanelDismiss')
+  sidepaneldismissHandler(): void {
     this.open = false;
   }
 
@@ -78,7 +78,7 @@ export class GuxModalSideSheet {
     const titleID: string = randomHTMLId();
     return (
       <dialog ref={el => (this.dialogElement = el)} aria-labelledby={titleID}>
-        <gux-side-sheet-beta size={this.size}>
+        <gux-side-panel-beta size={this.size}>
           <div slot="heading" id={titleID}>
             <slot name="heading" />
           </div>
@@ -93,7 +93,7 @@ export class GuxModalSideSheet {
           <div slot="footer">
             <slot name="footer" />
           </div>
-        </gux-side-sheet-beta>
+        </gux-side-panel-beta>
       </dialog>
     ) as JSX.Element;
   }

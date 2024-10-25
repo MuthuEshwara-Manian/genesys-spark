@@ -7,26 +7,26 @@ import {
   Prop
 } from '@stencil/core';
 import { trackComponent } from '@utils/tracking/usage';
-import { GuxSideSheetSize } from './gux-side-sheet.types';
+import { GuxSidePanelSize } from './gux-side-panel.types';
 import { hasSlot } from '@utils/dom/has-slot';
 
 @Component({
-  tag: 'gux-side-sheet-beta',
-  styleUrl: 'gux-side-sheet.scss',
+  tag: 'gux-side-panel-beta',
+  styleUrl: 'gux-side-panel.scss',
   shadow: true
 })
-export class GuxSideSheet {
+export class GuxSidePanel {
   @Element()
   private root: HTMLElement;
 
   @Prop()
-  size: GuxSideSheetSize = 'small';
+  size: GuxSidePanelSize = 'small';
 
   @Event()
-  sideSheetDismiss: EventEmitter<void>;
+  sidePanelDismiss: EventEmitter<void>;
 
   private onDismissHandler(): void {
-    this.sideSheetDismiss.emit();
+    this.sidePanelDismiss.emit();
   }
 
   componentWillLoad(): void {
@@ -35,17 +35,17 @@ export class GuxSideSheet {
 
   render(): JSX.Element {
     return (
-      <div class={`gux-side-sheet gux-side-sheet-${this.size}`}>
+      <div class={`gux-side-panel gux-side-panel-${this.size}`}>
         <header>
           <gux-dismiss-button onClick={this.onDismissHandler.bind(this)} />
           <slot name="heading" />
         </header>
         {hasSlot(this.root, 'description') && (
-          <div class="gux-side-sheet-description">
+          <div class="gux-side-panel-description">
             <slot name="description" />
           </div>
         )}
-        <div class="gux-side-sheet-content">
+        <div class="gux-side-panel-content">
           <slot name="content" />
         </div>
         <footer>

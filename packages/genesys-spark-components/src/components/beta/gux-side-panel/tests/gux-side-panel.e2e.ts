@@ -1,16 +1,16 @@
 import { newSparkE2EPage, a11yCheck } from '../../../../test/e2eTestUtils';
 
-describe('side sheet', () => {
+describe('side panel', () => {
   it('should render', async () => {
     const page = await newSparkE2EPage({
-      html: `<gux-side-sheet-beta>
-            <gux-side-sheet-heading
+      html: `<gux-side-panel-beta>
+            <gux-side-panel-heading
               slot="heading"
               level="3"
               icon="fa/diamond-regular"
             >
-              Side sheet title
-            </gux-side-sheet-heading>
+              Side panel title
+            </gux-side-panel-heading>
             <h2 slot="description">Description goes here</h2>
             <div slot="content">
               Content goes here.
@@ -22,9 +22,9 @@ describe('side sheet', () => {
                 <gux-button slot="dismiss">Dismiss</gux-button>
               </gux-cta-group>
             </div>
-          </gux-side-sheet-beta>`
+          </gux-side-panel-beta>`
     });
-    const element = await page.find('gux-side-sheet-beta');
+    const element = await page.find('gux-side-panel-beta');
 
     expect(element.outerHTML).toMatchSnapshot();
 
@@ -32,15 +32,15 @@ describe('side sheet', () => {
   });
 });
 
-describe('modal side sheet', () => {
-  const html = `<gux-modal-side-sheet-beta>
-            <gux-side-sheet-heading
+describe('modal side panel', () => {
+  const html = `<gux-modal-side-panel-beta>
+            <gux-side-panel-heading
               slot="heading"
               level="2"
               icon="fa/diamond-regular"
             >
-              Side sheet title
-            </gux-side-sheet-heading>
+              Side panel title
+            </gux-side-panel-heading>
             <h2 slot="description">Description goes here</h2>
             <div slot="content">
               Content goes here.
@@ -52,11 +52,11 @@ describe('modal side sheet', () => {
                 <gux-button slot="dismiss">Dismiss</gux-button>
               </gux-cta-group>
             </div>
-          </gux-modal-side-sheet-beta>`;
+          </gux-modal-side-panel-beta>`;
 
   it('should render', async () => {
     const page = await newSparkE2EPage({ html });
-    const element = await page.find('gux-modal-side-sheet-beta');
+    const element = await page.find('gux-modal-side-panel-beta');
 
     expect(element.outerHTML).toMatchSnapshot();
 
@@ -65,7 +65,7 @@ describe('modal side sheet', () => {
 
   it('should show/hide when toggling the open attribute', async () => {
     const page = await newSparkE2EPage({ html });
-    const element = await page.find('gux-modal-side-sheet-beta');
+    const element = await page.find('gux-modal-side-panel-beta');
     const dialog = await page.find('pierce/dialog');
 
     expect(element.getAttribute('open')).toBe(null);
@@ -78,7 +78,7 @@ describe('modal side sheet', () => {
 
   it('should close when clicking the dismiss button', async () => {
     const page = await newSparkE2EPage({ html });
-    const element = await page.find('gux-modal-side-sheet-beta');
+    const element = await page.find('gux-modal-side-panel-beta');
     const dialog = await page.find('pierce/dialog');
     const dismissButton = await page.find(
       'pierce/gux-dismiss-button >>> button'
@@ -95,7 +95,7 @@ describe('modal side sheet', () => {
 
   it('it should toggle when showModal or close is called', async () => {
     const page = await newSparkE2EPage({ html });
-    const element = await page.find('gux-modal-side-sheet-beta');
+    const element = await page.find('gux-modal-side-panel-beta');
     const dialog = await page.find('pierce/dialog');
 
     expect(element.getAttribute('open')).toBe(null);

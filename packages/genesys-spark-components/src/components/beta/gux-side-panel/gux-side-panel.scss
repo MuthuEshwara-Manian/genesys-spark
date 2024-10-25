@@ -10,7 +10,7 @@
   max-width: 50%;
 }
 
-.gux-side-sheet {
+.gux-side-panel {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
     var(--gse-ui-dynamicSideSheet-boxShadow-spread)
     var(--gse-ui-dynamicSideSheet-boxShadow-color);
 
-  &.gux-side-sheet-small .gux-side-sheet-content {
+  &.gux-side-panel-small .gux-side-panel-content {
     max-width: calc(
       var(--gse-ui-dynamicSideSheet-widthSize-sm) - var(
           --gse-ui-dynamicSideSheet-header-paddingLeft
@@ -30,7 +30,7 @@
     );
   }
 
-  &.gux-side-sheet-medium .gux-side-sheet-content {
+  &.gux-side-panel-medium .gux-side-panel-content {
     max-width: calc(
       var(--gse-ui-dynamicSideSheet-widthSize-md) - var(
           --gse-ui-dynamicSideSheet-header-paddingLeft
@@ -38,7 +38,7 @@
     );
   }
 
-  &.gux-side-sheet-large .gux-side-sheet-content {
+  &.gux-side-panel-large .gux-side-panel-content {
     max-width: calc(
       var(--gse-ui-dynamicSideSheet-widthSize-lg) - var(
           --gse-ui-dynamicSideSheet-header-paddingLeft
@@ -62,7 +62,7 @@
     }
   }
 
-  & .gux-side-sheet-content {
+  & .gux-side-panel-content {
     flex: 1 1 100%;
     padding: var(--gse-ui-dynamicSideSheet-gap);
     overflow-y: auto;
@@ -79,13 +79,13 @@
   }
 }
 
-.gux-side-sheet-description {
+.gux-side-panel-description {
   flex: 0 0 auto;
   padding: var(--gse-ui-dynamicSideSheet-header-gap)
     var(--gse-ui-dynamicSideSheet-gap) 0 var(--gse-ui-dynamicSideSheet-gap);
 }
 
 /* Take another look at this */
-.gux-side-sheet-description ::slotted(*) {
+.gux-side-panel-description ::slotted(*) {
   @include mixins.slotted-description;
 }

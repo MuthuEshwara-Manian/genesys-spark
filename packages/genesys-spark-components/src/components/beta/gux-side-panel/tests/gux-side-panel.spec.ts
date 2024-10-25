@@ -1,25 +1,25 @@
 import { newSpecPage } from '@test/specTestUtils';
 import { MockHTMLElement } from '@stencil/core/mock-doc';
-import { GuxSideSheet } from '../gux-side-sheet';
-import { GuxSideSheetHeading } from '../components/gux-side-sheet-heading/gux-side-sheet-heading';
-import { GuxModalSideSheet } from '../gux-modal-side-sheet';
+import { GuxSidePanel } from '../gux-side-panel';
+import { GuxSidePanelHeading } from '../components/gux-side-panel-heading/gux-side-panel-heading';
+import { GuxModalSidePanel } from '../gux-modal-side-panel';
 import { GuxDismissButton } from '../../../stable/gux-dismiss-button/gux-dismiss-button';
 
-describe('gux-side-sheet-beta', () => {
+describe('gux-side-panel-beta', () => {
   it.each(['small', 'medium', 'large'])(
     'renders correctly with %s size',
     async size => {
       const page = await newSpecPage({
-        components: [GuxSideSheet, GuxSideSheetHeading, GuxDismissButton],
+        components: [GuxSidePanel, GuxSidePanelHeading, GuxDismissButton],
         html: `
-        <gux-side-sheet-beta size="${size}">
-          <gux-side-sheet-heading
+        <gux-side-panel-beta size="${size}">
+          <gux-side-panel-heading
             slot="heading"
             level="3"
             icon="fa/diamond-regular"
           >
-            Side sheet title
-          </gux-side-sheet-heading>
+            Side panel title
+          </gux-side-panel-heading>
           <h2 slot="description">Description goes here</h2>
           <div slot="content">
             Content goes here.
@@ -31,7 +31,7 @@ describe('gux-side-sheet-beta', () => {
               <gux-button slot="dismiss">Dismiss</gux-button>
             </gux-cta-group>
           </div>
-        </gux-side-sheet-beta>
+        </gux-side-panel-beta>
       `
       });
 
@@ -43,16 +43,16 @@ describe('gux-side-sheet-beta', () => {
     'renders correctly with h%d heading level',
     async headingLevel => {
       const page = await newSpecPage({
-        components: [GuxSideSheet, GuxSideSheetHeading, GuxDismissButton],
+        components: [GuxSidePanel, GuxSidePanelHeading, GuxDismissButton],
         html: `
-        <gux-side-sheet-beta size="medium">
-          <gux-side-sheet-heading
+        <gux-side-panel-beta size="medium">
+          <gux-side-panel-heading
             slot="heading"
             level="${headingLevel}"
             icon="fa/diamond-regular"
           >
-            Side sheet title
-          </gux-side-sheet-heading>
+            Side panel title
+          </gux-side-panel-heading>
           <h2 slot="description">Description goes here</h2>
           <div slot="content">
             Content goes here.
@@ -64,7 +64,7 @@ describe('gux-side-sheet-beta', () => {
               <gux-button slot="dismiss">Dismiss</gux-button>
             </gux-cta-group>
           </div>
-        </gux-side-sheet-beta>
+        </gux-side-panel-beta>
       `
       });
 
@@ -72,22 +72,22 @@ describe('gux-side-sheet-beta', () => {
     }
   );
 
-  it('emits sideSheetDismiss event when dismissed', async () => {
+  it('emits sidePanelDismiss event when dismissed', async () => {
     const page = await newSpecPage({
-      components: [GuxSideSheet, GuxSideSheetHeading, GuxDismissButton],
+      components: [GuxSidePanel, GuxSidePanelHeading, GuxDismissButton],
       html: `
-        <gux-side-sheet-beta>
-          <gux-side-sheet-heading
+        <gux-side-panel-beta>
+          <gux-side-panel-heading
             slot="heading"
             level="3"
             icon="fa/diamond-regular"
           >
-            Side sheet title
-          </gux-side-sheet-heading
+            Side panel title
+          </gux-side-panel-heading
           <div slot="description">Description</div>
           <div slot="content">Content</div>
           <div slot="footer">Footer</div>
-        </gux-side-sheet-beta>
+        </gux-side-panel-beta>
       `
     });
 
@@ -95,7 +95,7 @@ describe('gux-side-sheet-beta', () => {
       page.root.shadowRoot.querySelector('gux-dismiss-button');
 
     const eventSpy = jest.fn();
-    page.root.addEventListener('sideSheetDismiss', eventSpy);
+    page.root.addEventListener('sidePanelDismiss', eventSpy);
 
     dismissButton.click();
     expect(eventSpy).toHaveBeenCalled();
@@ -105,7 +105,7 @@ describe('gux-side-sheet-beta', () => {
 const showModal = jest.fn();
 const close = jest.fn();
 
-describe('gux-modal-side-sheet-beta', () => {
+describe('gux-modal-side-panel-beta', () => {
   beforeAll(() => {
     // Required until JSDOM supports the dialog element. See:
     // https://github.com/jsdom/jsdom/issues/3294
@@ -124,20 +124,20 @@ describe('gux-modal-side-sheet-beta', () => {
   it.each([true, false])('renders correctly when open is %p', async open => {
     const page = await newSpecPage({
       components: [
-        GuxModalSideSheet,
-        GuxSideSheet,
-        GuxSideSheetHeading,
+        GuxModalSidePanel,
+        GuxSidePanel,
+        GuxSidePanelHeading,
         GuxDismissButton
       ],
       html: `
-          <gux-modal-side-sheet-beta ${open ? 'open' : ''}>
-            <gux-side-sheet-heading
+          <gux-modal-side-panel-beta ${open ? 'open' : ''}>
+            <gux-side-panel-heading
               slot="heading"
               level="2"
               icon="fa/diamond-regular"
             >
-              Side sheet title
-            </gux-side-sheet-heading>
+              Side panel title
+            </gux-side-panel-heading>
             <h2 slot="description">Description goes here</h2>
             <div slot="content">
               Content goes here.
@@ -149,7 +149,7 @@ describe('gux-modal-side-sheet-beta', () => {
                 <gux-button slot="dismiss">Dismiss</gux-button>
               </gux-cta-group>
             </div>
-          </gux-modal-side-sheet-beta>
+          </gux-modal-side-panel-beta>
         `
     });
 
@@ -161,20 +161,20 @@ describe('gux-modal-side-sheet-beta', () => {
     async size => {
       const page = await newSpecPage({
         components: [
-          GuxModalSideSheet,
-          GuxSideSheet,
-          GuxSideSheetHeading,
+          GuxModalSidePanel,
+          GuxSidePanel,
+          GuxSidePanelHeading,
           GuxDismissButton
         ],
         html: `
-        <gux-modal-side-sheet-beta size="${size}">
-          <gux-side-sheet-heading
+        <gux-modal-side-panel-beta size="${size}">
+          <gux-side-panel-heading
             slot="heading"
             level="2"
             icon="fa/diamond-regular"
           >
-            Side sheet title
-          </gux-side-sheet-heading>
+            Side panel title
+          </gux-side-panel-heading>
           <h2 slot="description">Description goes here</h2>
           <div slot="content">
             Content goes here.
@@ -186,7 +186,7 @@ describe('gux-modal-side-sheet-beta', () => {
               <gux-button slot="dismiss">Dismiss</gux-button>
             </gux-cta-group>
           </div>
-        </gux-modal-side-sheet-beta>
+        </gux-modal-side-panel-beta>
       `
       });
 
@@ -194,23 +194,23 @@ describe('gux-modal-side-sheet-beta', () => {
     }
   );
 
-  it('closes the modal side sheet when the escape key is pressed', async () => {
+  it('closes the modal side panel when the escape key is pressed', async () => {
     const page = await newSpecPage({
       components: [
-        GuxModalSideSheet,
-        GuxSideSheet,
-        GuxSideSheetHeading,
+        GuxModalSidePanel,
+        GuxSidePanel,
+        GuxSidePanelHeading,
         GuxDismissButton
       ],
       html: `
-        <gux-modal-side-sheet-beta open>
-          <gux-side-sheet-heading
+        <gux-modal-side-panel-beta open>
+          <gux-side-panel-heading
             slot="heading"
             level="2"
             icon="fa/diamond-regular"
           >
-            Side sheet title
-          </gux-side-sheet-heading>
+            Side panel title
+          </gux-side-panel-heading>
           <h2 slot="description">Description goes here</h2>
           <div slot="content">
             Content goes here.
@@ -222,12 +222,12 @@ describe('gux-modal-side-sheet-beta', () => {
               <gux-button slot="dismiss">Dismiss</gux-button>
             </gux-cta-group>
           </div>
-        </gux-modal-side-sheet-beta>
+        </gux-modal-side-panel-beta>
       `
     });
 
     const eventSpy = jest.fn();
-    page.root.addEventListener('modalSideSheetDismiss', eventSpy);
+    page.root.addEventListener('modalSidePanelDismiss', eventSpy);
 
     const event = new KeyboardEvent('keydown', {
       key: 'Escape'
@@ -240,20 +240,20 @@ describe('gux-modal-side-sheet-beta', () => {
   it('should call showModal & close methods when called', async () => {
     const page = await newSpecPage({
       components: [
-        GuxModalSideSheet,
-        GuxSideSheet,
-        GuxSideSheetHeading,
+        GuxModalSidePanel,
+        GuxSidePanel,
+        GuxSidePanelHeading,
         GuxDismissButton
       ],
       html: `
-        <gux-modal-side-sheet-beta>
-          <gux-side-sheet-heading
+        <gux-modal-side-panel-beta>
+          <gux-side-panel-heading
             slot="heading"
             level="2"
             icon="fa/diamond-regular"
           >
-            Side sheet title
-          </gux-side-sheet-heading>
+            Side panel title
+          </gux-side-panel-heading>
           <h2 slot="description">Description goes here</h2>
           <div slot="content">
             Content goes here.
@@ -265,12 +265,12 @@ describe('gux-modal-side-sheet-beta', () => {
               <gux-button slot="dismiss">Dismiss</gux-button>
             </gux-cta-group>
           </div>
-        </gux-modal-side-sheet-beta>
+        </gux-modal-side-panel-beta>
       `
     });
 
     const eventSpy = jest.fn();
-    page.root.addEventListener('modalSideSheetDismiss', eventSpy);
+    page.root.addEventListener('modalSidePanelDismiss', eventSpy);
 
     page.rootInstance.showModal();
     expect(showModal).toHaveBeenCalled();
