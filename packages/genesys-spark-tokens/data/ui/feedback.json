@@ -492,7 +492,7 @@
       "type": "borderRadius"
     }
   },
-  "modal_side_sheet": {
+  "modal_side_panel": {
     "background_color": {
       "value": "{background.container.elevated.default}",
       "type": "color"
@@ -588,21 +588,21 @@
       }
     }
   },
-  "dynamic_side_sheet": {
+  "dynamic_side_panel": {
     "background_color": {
-      "value": "{modal_side_sheet.background_color}",
+      "value": "{modal_side_panel.background_color}",
       "type": "color"
     },
     "header_color": {
-      "value": "{modal_side_sheet.header_color}",
+      "value": "{modal_side_panel.header_color}",
       "type": "color"
     },
     "close_color": {
-      "value": "{modal_side_sheet.close_color}",
+      "value": "{modal_side_panel.close_color}",
       "type": "color"
     },
     "divider_color": {
-      "value": "{modal_side_sheet.divider_color}",
+      "value": "{modal_side_panel.divider_color}",
       "type": "color"
     },
     "box_shadow": {
@@ -610,7 +610,7 @@
       "type": "boxShadow"
     },
     "description_color": {
-      "value": "{modal_side_sheet.description_color}",
+      "value": "{modal_side_panel.description_color}",
       "type": "color"
     },
     "heading": {
