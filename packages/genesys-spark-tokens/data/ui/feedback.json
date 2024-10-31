@@ -580,18 +580,6 @@
       }
     }
   },
-  "side_panel": {
-    "shroud_color": {
-      "value": "{modal.shroud_color}",
-      "type": "color"
-    },
-    "shroud": {
-      "opacity": {
-        "value": "{opacity.shroud}",
-        "type": "opacity"
-      }
-    }
-  },
   "dynamic_side_panel": {
     "background_color": {
       "value": "{modal_side_panel.background_color}",
