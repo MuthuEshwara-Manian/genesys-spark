@@ -565,6 +565,16 @@
         "value": "560px",
         "type": "spacing"
       }
+    },
+    "shroud": {
+      "opacity": {
+        "value": "{opacity.shroud}",
+        "type": "opacity"
+      }
+    },
+    "shroud_color": {
+      "value": "{modal.shroud_color}",
+      "type": "color"
     }
   }
 }
