@@ -11,8 +11,8 @@ dialog {
 }
 
 dialog::backdrop {
-  background: var(--gse-ui-modalSideSheet-shroudColor);
-  opacity: var(--gse-ui-modalSideSheet-shroud-opacity);
+  background: var(--gse-ui-sidePanel-shroudColor);
+  opacity: var(--gse-ui-sidePanel-shroud-opacity);
 }
 
 slot[name='description']::slotted(*) {

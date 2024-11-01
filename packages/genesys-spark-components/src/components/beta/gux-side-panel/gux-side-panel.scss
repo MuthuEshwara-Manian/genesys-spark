@@ -16,43 +16,43 @@
   flex-direction: column;
   height: inherit;
   background-color: white;
-  box-shadow: var(--gse-ui-dynamicSideSheet-boxShadow-offsetX)
-    var(--gse-ui-dynamicSideSheet-boxShadow-offsetY)
-    var(--gse-ui-dynamicSideSheet-boxShadow-blur)
-    var(--gse-ui-dynamicSideSheet-boxShadow-spread)
-    var(--gse-ui-dynamicSideSheet-boxShadow-color);
+  box-shadow: var(--gse-ui-sidePanel-boxShadow-offsetX)
+    var(--gse-ui-sidePanel-boxShadow-offsetY)
+    var(--gse-ui-sidePanel-boxShadow-blur)
+    var(--gse-ui-sidePanel-boxShadow-spread)
+    var(--gse-ui-sidePanel-boxShadow-color);
 
   &.gux-side-panel-small .gux-side-panel-content {
     max-width: calc(
-      var(--gse-ui-dynamicSideSheet-widthSize-sm) - var(
-          --gse-ui-dynamicSideSheet-header-paddingLeft
-        ) - var(--gse-ui-dynamicSideSheet-header-paddingRight)
+      var(--gse-ui-sidePanel-widthSize-sm) - var(
+          --gse-ui-sidePanel-header-paddingLeft
+        ) - var(--gse-ui-sidePanel-header-paddingRight)
     );
   }
 
   &.gux-side-panel-medium .gux-side-panel-content {
     max-width: calc(
-      var(--gse-ui-dynamicSideSheet-widthSize-md) - var(
-          --gse-ui-dynamicSideSheet-header-paddingLeft
-        ) - var(--gse-ui-dynamicSideSheet-header-paddingRight)
+      var(--gse-ui-sidePanel-widthSize-md) - var(
+          --gse-ui-sidePanel-header-paddingLeft
+        ) - var(--gse-ui-sidePanel-header-paddingRight)
     );
   }
 
   &.gux-side-panel-large .gux-side-panel-content {
     max-width: calc(
-      var(--gse-ui-dynamicSideSheet-widthSize-lg) - var(
-          --gse-ui-dynamicSideSheet-header-paddingLeft
-        ) - var(--gse-ui-dynamicSideSheet-header-paddingRight)
+      var(--gse-ui-sidePanel-widthSize-lg) - var(
+          --gse-ui-sidePanel-header-paddingLeft
+        ) - var(--gse-ui-sidePanel-header-paddingRight)
     );
   }
 
   & > header {
     position: relative;
-    padding: var(--gse-ui-dynamicSideSheet-header-paddingTop)
-      var(--gse-ui-dynamicSideSheet-header-paddingRight)
-      var(--gse-ui-dynamicSideSheet-header-gap)
-      var(--gse-ui-dynamicSideSheet-header-paddingLeft);
-    border-bottom: 1px solid var(--gse-ui-dynamicSideSheet-dividerColor);
+    padding: var(--gse-ui-sidePanel-header-paddingTop)
+      var(--gse-ui-sidePanel-header-paddingRight)
+      var(--gse-ui-sidePanel-header-gap)
+      var(--gse-ui-sidePanel-header-paddingLeft);
+    border-bottom: 1px solid var(--gse-ui-sidePanel-dividerColor);
 
     /* Take another look at this */
     & gux-dismiss-button {
@@ -64,25 +64,25 @@
 
   & .gux-side-panel-content {
     flex: 1 1 100%;
-    padding: var(--gse-ui-dynamicSideSheet-gap);
+    padding: var(--gse-ui-sidePanel-gap);
     overflow-y: auto;
-    font-family: var(--gse-ui-dynamicSideSheet-description-fontFamily);
-    font-size: var(--gse-ui-dynamicSideSheet-description-fontSize);
-    font-weight: var(--gse-ui-dynamicSideSheet-description-fontWeight);
-    line-height: var(--gse-ui-dynamicSideSheet-description-lineHeight);
+    font-family: var(--gse-ui-sidePanel-description-fontFamily);
+    font-size: var(--gse-ui-sidePanel-description-fontSize);
+    font-weight: var(--gse-ui-sidePanel-description-fontWeight);
+    line-height: var(--gse-ui-sidePanel-description-lineHeight);
   }
 
   & > footer {
     flex: 0 0 auto;
-    padding: var(--gse-ui-dynamicSideSheet-footer-padding);
-    border-top: 1px solid var(--gse-ui-dynamicSideSheet-dividerColor);
+    padding: var(--gse-ui-sidePanel-footer-padding);
+    border-top: 1px solid var(--gse-ui-sidePanel-dividerColor);
   }
 }
 
 .gux-side-panel-description {
   flex: 0 0 auto;
-  padding: var(--gse-ui-dynamicSideSheet-header-gap)
-    var(--gse-ui-dynamicSideSheet-gap) 0 var(--gse-ui-dynamicSideSheet-gap);
+  padding: var(--gse-ui-sidePanel-header-gap) var(--gse-ui-sidePanel-gap) 0
+    var(--gse-ui-sidePanel-gap);
 }
 
 /* Take another look at this */

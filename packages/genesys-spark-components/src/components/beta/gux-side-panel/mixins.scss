@@ -1,7 +1,7 @@
 @mixin slotted-description {
   margin: 0;
-  font-family: var(--gse-ui-dynamicSideSheet-description-fontFamily) !important;
-  font-size: var(--gse-ui-dynamicSideSheet-description-fontSize) !important;
-  font-weight: var(--gse-ui-dynamicSideSheet-description-fontWeight) !important;
-  line-height: var(--gse-ui-dynamicSideSheet-description-lineHeight) !important;
+  font-family: var(--gse-ui-sidePanel-description-fontFamily) !important;
+  font-size: var(--gse-ui-sidePanel-description-fontSize) !important;
+  font-weight: var(--gse-ui-sidePanel-description-fontWeight) !important;
+  line-height: var(--gse-ui-sidePanel-description-lineHeight) !important;
 }

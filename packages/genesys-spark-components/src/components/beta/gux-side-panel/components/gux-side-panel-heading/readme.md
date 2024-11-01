@@ -22,10 +22,10 @@
 ### Graph
 ```mermaid
 graph TD;
-  gux-side-sheet-heading --> gux-icon
-  gux-side-sheet-heading --> gux-truncate
+  gux-side-panel-heading --> gux-icon
+  gux-side-panel-heading --> gux-truncate
   gux-truncate --> gux-tooltip
-  style gux-side-sheet-heading fill:#f9f,stroke:#333,stroke-width:4px
+  style gux-side-panel-heading fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
