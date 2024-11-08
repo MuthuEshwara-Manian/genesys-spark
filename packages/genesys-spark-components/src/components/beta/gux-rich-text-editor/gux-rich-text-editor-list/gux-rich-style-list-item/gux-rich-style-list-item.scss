@@ -1,0 +1,57 @@
+@use '../../../../stable/gux-list/list-item-default.scss';
+
+@include list-item-default.gux-list-item-default;
+
+button {
+  &.gux-typography-heading-1 {
+    min-block-size: 48px; // Token Required : COMUI-XXXX
+    font-family: var(--gse-semantic-heading-lg-semiBold-fontFamily);
+    font-size: var(--gse-semantic-heading-lg-semiBold-fontSize);
+    font-weight: var(--gse-semantic-heading-lg-semiBold-fontWeight);
+    line-height: var(--gse-semantic-heading-lg-semiBold-lineHeight);
+
+    &:active:not(:disabled) {
+      font-size: var(--gse-semantic-heading-lg-semiBold-fontSize);
+      background: var(--gse-ui-menu-option-selected-backgroundColor);
+    }
+  }
+
+  &.gux-typography-heading-2 {
+    min-block-size: 43px; // Token Required : COMUI-XXXX
+    font-family: var(--gse-semantic-heading-md-semiBold-fontFamily);
+    font-size: var(--gse-semantic-heading-md-semiBold-fontSize);
+    font-weight: var(--gse-semantic-heading-md-semiBold-fontWeight);
+    line-height: var(--gse-semantic-heading-md-semiBold-lineHeight);
+
+    &:active:not(:disabled) {
+      font-size: var(--gse-semantic-heading-md-semiBold-fontSize);
+      background: var(--gse-ui-menu-option-selected-backgroundColor);
+    }
+  }
+
+  &.gux-typography-heading-3 {
+    min-block-size: 32px; // Token Required : COMUI-3190
+    font-family: var(--gse-semantic-heading-sm-semiBold-fontFamily);
+    font-size: var(--gse-semantic-heading-sm-semiBold-fontSize);
+    font-weight: var(--gse-semantic-heading-sm-semiBold-fontWeight);
+    line-height: var(--gse-semantic-heading-sm-semiBold-lineHeight);
+
+    &:active:not(:disabled) {
+      font-size: var(--gse-semantic-heading-sm-semiBold-fontSize);
+      background: var(--gse-ui-menu-option-selected-backgroundColor);
+    }
+  }
+
+  &.gux-typography-paragraph {
+    min-block-size: 32px; // Token Required : COMUI-3190
+    font-family: var(--gse-semantic-body-sm-regular-fontFamily);
+    font-size: var(--gse-semantic-body-sm-regular-fontSize);
+    font-weight: var(--gse-semantic-body-sm-regular-fontWeight);
+    line-height: var(--gse-semantic-body-sm-regular-lineHeight);
+
+    &:active:not(:disabled) {
+      font-size: var(--gse-semantic-body-sm-regular-fontSize);
+      background: var(--gse-ui-menu-option-selected-backgroundColor);
+    }
+  }
+}

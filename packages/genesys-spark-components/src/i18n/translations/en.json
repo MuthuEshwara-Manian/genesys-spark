@@ -453,7 +453,9 @@
     "clearFormatting": "Clear Formatting",
     "undo": "Undo",
     "redo": "Redo",
-    "delete": "Delete"
+    "delete": "Delete",
+    "richStyle": "Rich Style",
+    "paragraph": "Paragraph"
   },
   "gux-skip-navigation-list": {
     "navigationName": "Skip links navigation"

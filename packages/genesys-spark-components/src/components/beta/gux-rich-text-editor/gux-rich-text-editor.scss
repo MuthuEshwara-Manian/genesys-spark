@@ -33,7 +33,7 @@
     opacity: 0.5;
   }
 
-  &:active {
+  &:active:enabled {
     border: var(--gse-ui-rte-mainContainer-active-border-width)
       var(--gse-ui-rte-mainContainer-active-border-color)
       var(--gse-ui-rte-mainContainer-active-border-style);
