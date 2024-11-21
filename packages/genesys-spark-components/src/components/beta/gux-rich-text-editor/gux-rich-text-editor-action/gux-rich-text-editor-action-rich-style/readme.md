@@ -10,7 +10,6 @@
 | Property   | Attribute  | Description | Type      | Default |
 | ---------- | ---------- | ----------- | --------- | ------- |
 | `disabled` | `disabled` |             | `boolean` | `false` |
-| `expanded` | `expanded` |             | `boolean` | `false` |
 
 
 ## Slots

@@ -51,7 +51,7 @@ export class GuxRichTextEditorAction {
         <button
           type="button"
           disabled={this.disabled}
-          class={{ 'gux-is-active': this.isActive }}
+          class={{ 'gux-is-pressed': this.isActive }}
           aria-pressed={this.isActive.toString()}
         >
           <gux-icon

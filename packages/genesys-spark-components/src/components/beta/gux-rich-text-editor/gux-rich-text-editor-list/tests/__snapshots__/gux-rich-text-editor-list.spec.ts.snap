@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gux-rich-text-editor-list should build and render 1`] = `
+<gux-rich-text-editor-list role="list">
+  <template shadowrootmode="open">
+    <span aria-hidden="true" tabindex="-1"></span>
+    <slot></slot>
+  </template>
+  <gux-rich-style-list-item hydrated="" role="listitem" text-style="heading-1">
+    Heading 1
+  </gux-rich-style-list-item>
+  <gux-rich-style-list-item hydrated="" role="listitem" text-style="heading-2">
+    Heading 1
+  </gux-rich-style-list-item>
+  <gux-rich-style-list-item hydrated="" role="listitem" text-style="heading-3">
+    Heading 1
+  </gux-rich-style-list-item>
+</gux-rich-text-editor-list>
+`;

@@ -1,4 +1,12 @@
-import { Component, Element, h, Prop, Listen, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Prop,
+  Listen,
+  Watch,
+  State
+} from '@stencil/core';
 import { trackComponent } from '@utils/tracking/usage';
 import { buildI18nForComponent, GetI18nValue } from 'i18n';
 import translationResources from '../i18n/en.json';
@@ -24,7 +32,7 @@ export class GuxRichTextEditorActionRichStyle {
   @Element()
   private root: HTMLElement;
 
-  @Prop({ mutable: true })
+  @State()
   expanded: boolean = false;
 
   @Prop({ mutable: true })
@@ -151,7 +159,7 @@ export class GuxRichTextEditorActionRichStyle {
         <button
           type="button"
           ref={el => (this.actionButton = el)}
-          class={{ 'gux-is-active': this.expanded }}
+          class={{ 'gux-is-pressed': this.expanded }}
           onClick={() => this.onActionButtonClick()}
           disabled={this.disabled}
           aria-haspopup="true"

@@ -12,7 +12,7 @@ gux-button-slot {
     align-items: center;
     justify-content: center;
 
-    &.gux-is-active {
+    &.gux-is-pressed {
       color: var(--gse-ui-button-ghost-active-foregroundColor);
       background-color: var(--gse-ui-button-ghost-active-backgroundColor);
     }
