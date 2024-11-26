@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gux-rich-text-editor-list should display component as expected (1) 1`] = `"<gux-rich-text-editor-list role="list" hydrated=""><template shadowrootmode="open"><span tabindex="-1" aria-hidden="true"></span><slot></slot></template> <gux-rich-style-list-item text-style="heading-1" role="listitem" hydrated="">Heading 1</gux-rich-style-list-item> <gux-rich-style-list-item text-style="heading-2" role="listitem" hydrated="">Heading 1</gux-rich-style-list-item> <gux-rich-style-list-item text-style="heading-3" role="listitem" hydrated="">Heading 1</gux-rich-style-list-item> </gux-rich-text-editor-list>"`;

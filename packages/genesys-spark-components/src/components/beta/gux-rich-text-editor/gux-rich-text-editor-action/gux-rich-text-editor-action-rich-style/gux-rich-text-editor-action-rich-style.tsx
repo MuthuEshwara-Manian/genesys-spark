@@ -10,7 +10,7 @@ import {
 import { trackComponent } from '@utils/tracking/usage';
 import { buildI18nForComponent, GetI18nValue } from 'i18n';
 import translationResources from '../i18n/en.json';
-import { calculateDisabledState } from '../../gux-rich-text-editor.service';
+import { hasDisabledParent } from '../../gux-rich-text-editor.service';
 import { OnClickOutside } from '@utils/decorator/on-click-outside';
 import { whenEventIsFrom } from '@utils/dom/when-event-is-from';
 import { afterNextRender } from '@utils/dom/after-next-render';
@@ -35,7 +35,7 @@ export class GuxRichTextEditorActionRichStyle {
   @State()
   expanded: boolean = false;
 
-  @Prop({ mutable: true })
+  @Prop()
   disabled: boolean = false;
 
   @OnClickOutside({ triggerEvents: 'mousedown' })
@@ -113,7 +113,6 @@ export class GuxRichTextEditorActionRichStyle {
   async componentWillLoad(): Promise<void> {
     trackComponent(this.root);
     this.i18n = await buildI18nForComponent(this.root, translationResources);
-    this.disabled = calculateDisabledState(this.root);
   }
 
   private onActionButtonClick(): void {
@@ -161,7 +160,7 @@ export class GuxRichTextEditorActionRichStyle {
           ref={el => (this.actionButton = el)}
           class={{ 'gux-is-pressed': this.expanded }}
           onClick={() => this.onActionButtonClick()}
-          disabled={this.disabled}
+          disabled={this.disabled || hasDisabledParent(this.root)}
           aria-haspopup="true"
           aria-expanded={this.expanded.toString()}
         >
@@ -180,7 +179,7 @@ export class GuxRichTextEditorActionRichStyle {
     return (
       <gux-popup
         expanded={this.expanded}
-        disabled={this.disabled}
+        disabled={this.disabled || hasDisabledParent(this.root)}
         exceedTargetWidth
         placement="bottom-start"
       >
