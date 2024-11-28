@@ -22,6 +22,12 @@ export class GuxRichStyleListItem {
   @Prop()
   textStyle: GuxTextStyle;
 
+  @Prop()
+  value: string;
+
+  @Prop()
+  selected: boolean = false;
+
   @Listen('mouseup')
   onMouseUp(): void {
     this.focusParentList();

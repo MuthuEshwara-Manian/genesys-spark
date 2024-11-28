@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default |
-| ---------- | ---------- | ----------- | --------- | ------- |
-| `disabled` | `disabled` |             | `boolean` | `false` |
+| Property   | Attribute  | Description | Type      | Default     |
+| ---------- | ---------- | ----------- | --------- | ----------- |
+| `disabled` | `disabled` |             | `boolean` | `false`     |
+| `value`    | `value`    |             | `string`  | `undefined` |
 
 
 ## Slots
@@ -23,6 +24,7 @@
 
 ### Depends on
 
+- [gux-truncate](../../../../stable/gux-truncate)
 - [gux-rich-text-editor-list](../../gux-rich-text-editor-list)
 - [gux-tooltip-beta](../../../gux-tooltip-beta)
 - [gux-button-slot](../../../../stable/gux-button-slot)
@@ -32,11 +34,13 @@
 ### Graph
 ```mermaid
 graph TD;
+  gux-rich-text-editor-action-rich-style --> gux-truncate
   gux-rich-text-editor-action-rich-style --> gux-rich-text-editor-list
   gux-rich-text-editor-action-rich-style --> gux-tooltip-beta
   gux-rich-text-editor-action-rich-style --> gux-button-slot
   gux-rich-text-editor-action-rich-style --> gux-icon
   gux-rich-text-editor-action-rich-style --> gux-popup
+  gux-truncate --> gux-tooltip
   gux-tooltip-beta --> gux-tooltip-base-beta
   style gux-rich-text-editor-action-rich-style fill:#f9f,stroke:#333,stroke-width:4px
 ```

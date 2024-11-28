@@ -1,4 +1,15 @@
-import { Component, Element, Listen, Host, h, Method } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Listen,
+  Host,
+  h,
+  Method,
+  Prop,
+  State,
+  Event,
+  EventEmitter
+} from '@stencil/core';
 import { trackComponent } from '@utils/tracking/usage';
 
 import {
@@ -23,8 +34,43 @@ export class GuxRichTextEditorList {
   @Element()
   root: HTMLElement;
 
-  componentWillLoad(): void {
+  @Prop({ mutable: true })
+  value: string;
+
+  @State()
+  listItems: HTMLGuxRichStyleListItemElement[] = [];
+
+  @Event()
+  internallistitemsupdated: EventEmitter;
+
+  get listItemsSlot(): HTMLSlotElement | null {
+    return this.root.querySelector('slot');
+  }
+
+  get listItemElements(): HTMLGuxRichStyleListItemElement[] {
+    const assignedElements = this.listItemsSlot?.assignedElements();
+
+    if (assignedElements) {
+      return Array.from(assignedElements as HTMLGuxRichStyleListItemElement[]);
+    }
+    return [];
+  }
+
+  private setListItems(): void {
+    this.listItems = this.listItemElements as HTMLGuxRichStyleListItemElement[];
+    this.internallistitemsupdated.emit();
+  }
+
+  async componentWillLoad(): Promise<void> {
     trackComponent(this.root);
+
+    this.setListItems();
+  }
+
+  componentWillRender(): void {
+    this.listItems.forEach(listItem => {
+      listItem.selected = listItem.value === this.value;
+    });
   }
 
   @Listen('keydown')
@@ -69,7 +115,7 @@ export class GuxRichTextEditorList {
     return (
       <Host role="list">
         {this.renderFocusTarget()}
-        <slot></slot>
+        <slot onSlotchange={() => this.setListItems()}></slot>
       </Host>
     );
   }

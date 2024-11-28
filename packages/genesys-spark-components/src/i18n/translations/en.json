@@ -454,8 +454,7 @@
     "undo": "Undo",
     "redo": "Redo",
     "delete": "Delete",
-    "richStyle": "Rich Style",
-    "paragraph": "Paragraph"
+    "richStyle": "Rich Style"
   },
   "gux-skip-navigation-list": {
     "navigationName": "Skip links navigation"

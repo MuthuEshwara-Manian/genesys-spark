@@ -5,7 +5,8 @@ import {
   Prop,
   Listen,
   Watch,
-  State
+  State,
+  forceUpdate
 } from '@stencil/core';
 import { trackComponent } from '@utils/tracking/usage';
 import { buildI18nForComponent, GetI18nValue } from 'i18n';
@@ -32,6 +33,9 @@ export class GuxRichTextEditorActionRichStyle {
   @Element()
   private root: HTMLElement;
 
+  @Prop({ mutable: true })
+  value: string;
+
   @State()
   expanded: boolean = false;
 
@@ -43,11 +47,22 @@ export class GuxRichTextEditorActionRichStyle {
     this.expanded = false;
   }
 
+  @Watch('value')
+  watchValue(newValue: string) {
+    this.validateValue(newValue, this.listElement);
+  }
+
   @Watch('disabled')
   watchDisabled(disabled: boolean) {
     if (disabled) {
       this.expanded = false;
     }
+  }
+
+  @Listen('internallistitemsupdated')
+  onInternallistitemsupdated(event: CustomEvent): void {
+    event.stopPropagation();
+    forceUpdate(this.root);
   }
 
   @Listen('keydown')
@@ -115,6 +130,65 @@ export class GuxRichTextEditorActionRichStyle {
     this.i18n = await buildI18nForComponent(this.root, translationResources);
   }
 
+  componentWillRender(): void {
+    if (this?.listElement) {
+      this.validateValue(this.value, this.listElement);
+    }
+  }
+
+  private validateValue(
+    newValue: string,
+    listElement: HTMLGuxRichTextEditorListElement
+  ): void {
+    if (newValue === undefined) {
+      listElement.value = newValue;
+      return;
+    }
+
+    const selectedListItem = this.getListItemElementByValue(newValue);
+
+    if (selectedListItem) {
+      listElement.value = newValue;
+      return;
+    }
+  }
+
+  get listItemElements(): HTMLGuxRichStyleListItemElement[] {
+    const slot = this.listElement.querySelector('slot');
+    if (slot) {
+      return Array.from(
+        slot.assignedElements() as HTMLGuxRichStyleListItemElement[]
+      );
+    }
+  }
+
+  private getListItemElementByValue(value: string): HTMLElement {
+    return this.listItemElements.find(itemElement => {
+      return itemElement.value === value;
+    });
+  }
+
+  private renderTargetDisplay(): JSX.Element {
+    if (this?.listElement) {
+      const selectedListItemElement = this.getListItemElementByValue(
+        this.value
+      );
+      if (selectedListItemElement) {
+        return (
+          <span>
+            {this.renderListItem(
+              selectedListItemElement as HTMLGuxRichTextEditorListElement
+            )}
+          </span>
+        ) as JSX.Element;
+      }
+    }
+  }
+
+  private renderListItem(item: HTMLGuxRichTextEditorListElement): JSX.Element {
+    return (<gux-truncate>{item.textContent}</gux-truncate>) as JSX.Element;
+  }
+
   private onActionButtonClick(): void {
     this.expanded = !this.expanded;
     if (this.expanded) {
@@ -122,9 +196,18 @@ export class GuxRichTextEditorActionRichStyle {
     }
   }
 
+  private updateValue(newValue: string): void {
+    if (this.value !== newValue) {
+      this.value = newValue;
+    }
+  }
+
   private onListClick(event: MouseEvent): void {
     whenEventIsFrom('gux-rich-style-list-item', event, () => {
       this.expanded = false;
+      this.updateValue(
+        (event.target as HTMLGuxRichTextEditorListElement).value
+      );
       this.actionButton.focus();
     });
   }
@@ -164,7 +247,7 @@ export class GuxRichTextEditorActionRichStyle {
           aria-haspopup="true"
           aria-expanded={this.expanded.toString()}
         >
-          {this.i18n('paragraph')}
+          {this.renderTargetDisplay()}
           <gux-icon
             icon-name="custom/chevron-down-small-regular"
             decorative
