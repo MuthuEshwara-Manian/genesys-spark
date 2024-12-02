@@ -61,31 +61,35 @@ export class GuxPagination implements ComponentInterface {
   private guxpaginationchange: EventEmitter<GuxPaginationState>;
 
   private setPage(page: number): void {
+    console.log('>>>setPage 1');
     if (page <= 0) {
       this.setPage(1);
       return;
     }
-
+    console.log('>>>setPage 2');
     const totalPages = this.calculateTotalPages();
     if (page > totalPages) {
       this.setPage(totalPages);
       return;
     }
-
+    console.log('>>>setPage 3');
     this.currentPage = page;
     this.guxpaginationchange.emit({
       currentPage: this.currentPage,
       itemsPerPage: this.itemsPerPage
     });
+    console.log('>>>setPage 4');
   }
 
   private calculateTotalPages(): number {
+    console.log('>>>calculateTotalPages');
     return Math.max(1, Math.ceil(this.totalItems / this.itemsPerPage));
   }
 
   private calculateCurrentPage(): number {
+    console.log('>>>calculateCurrentPage 1');
     const minCurrentPage = this.totalPages > 0 ? 1 : 0;
-
+    console.log('>>>calculateCurrentPage 2');
     return Math.max(
       minCurrentPage,
       Math.min(this.currentPage, this.totalPages)
@@ -93,19 +97,24 @@ export class GuxPagination implements ComponentInterface {
   }
 
   private handleInternalitemsperpagechange(event: CustomEvent): void {
+    console.log('>>>handleInternalitemsperpagechange 1');
     this.itemsPerPage = event.detail as GuxItemsPerPage;
     this.setPage(1);
+    console.log('>>>handleInternalitemsperpagechange 2');
   }
 
   private handleInternalcurrentpagechange(event: CustomEvent): void {
+    console.log('>>>handleInternalcurrentpagechange 1');
     this.setPage(event.detail as number);
+    console.log('>>>handleInternalcurrentpagechange 1');
   }
 
   private getPaginationInfoElement(layout: GuxPaginationLayout): JSX.Element {
+    console.log('>>>getPaginationInfoElement 1');
     if (layout === 'expanded') {
       return null;
     }
-
+    console.log('>>>getPaginationInfoElement 2');
     const content = [
       <gux-pagination-item-counts
         total-items={this.totalItems}
@@ -113,7 +122,7 @@ export class GuxPagination implements ComponentInterface {
         items-per-page={this.itemsPerPage}
       />
     ];
-
+    console.log('>>>getPaginationInfoElement 3');
     if (layout === 'full') {
       content.push(
         <gux-pagination-items-per-page
@@ -124,20 +133,25 @@ export class GuxPagination implements ComponentInterface {
         ></gux-pagination-items-per-page>
       );
     }
-
+    console.log('>>>getPaginationInfoElement 4');
     return (<div class="gux-pagination-info">{content}</div>) as JSX.Element;
   }
 
   componentWillLoad(): void {
+    console.log('>>>componentWillLoad 1');
     trackComponent(this.root, { variant: this.layout });
+    console.log('>>>componentWillLoad 2');
   }
 
   componentWillRender(): void {
+    console.log('>>>componentWillRender 1');
     this.totalPages = this.calculateTotalPages();
     this.currentPage = this.calculateCurrentPage();
+    console.log('>>>componentWillRender 2');
   }
 
   render(): JSX.Element {
+    console.log('>>>render');
     return (
       <div class="gux-pagination-container">
         {this.getPaginationInfoElement(this.layout)}
